@@ -45,7 +45,7 @@ chsh -s $(which zsh)
 
 curl -fLo /home/vagrant/.vim/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
 
-vim +PlugInstall +q
+vim +PlugInstall +qall
 
 ######################
 ######= Java 8 =######
