@@ -2,7 +2,7 @@
 
 oldHome=$HOME
 su -m vagrant
-set HOME=/home/vagrant
+HOME=/home/vagrant
 
 sudo sh -c 'echo "deb http://http.debian.net/debian jessie-backports main" >> /etc/apt/sources.list.d/valkyrie.list'
 sudo sh -c 'echo "deb http://llvm.org/apt/jessie/ llvm-toolchain-jessie-3.6 main" >> /etc/apt/sources.list.d/valkyrie.list'
