@@ -1,7 +1,8 @@
 #!/usr/bin/env bash
 
 oldHome=$HOME
-su -H vagrant
+su -m vagrant
+set HOME=/home/vagrant
 
 sudo sh -c 'echo "deb http://http.debian.net/debian jessie-backports main" >> /etc/apt/sources.list.d/valkyrie.list'
 sudo sh -c 'echo "deb http://llvm.org/apt/jessie/ llvm-toolchain-jessie-3.6 main" >> /etc/apt/sources.list.d/valkyrie.list'
@@ -64,7 +65,12 @@ mkdir ~/Build; cd ~/Build
 git clone https://github.com/powerline/fonts; cd fonts
 ./install.sh
 
+wget -q https://raw.githubusercontent.com/rupa/z/master/z.sh -O /home/vagrant/z.sh
+sudo chmod +x /home/vagrant/z.sh
+
 sudo apt-get install python libpython-dev ruby clang-format-3.5 clang-3.6 gfortran libblas-dev liblapack-dev python-scipy python-matplotlib -yq
+
+sudo chown -R vagrant:vagrant /home/vagrant
 
 ######################
 ######= Ricing =######
