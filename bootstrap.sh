@@ -29,7 +29,7 @@ wget -q https://valkyrierobotics.com/debian/vimrc -O ~/.vimrc
 sudo chmod 664 ~/.vimrc
 sudo chown vagrant ~/.vimrc
 
-sudo apt-get install -y vim-gtk curl zsh git
+sudo apt-get install -y vim-gtk curl zsh git sl
 
 sh -c "$(curl -fsSL https://raw.githubusercontent.com/valkyrierobotics/oh-my-zsh/master/tools/install.sh)"
 
