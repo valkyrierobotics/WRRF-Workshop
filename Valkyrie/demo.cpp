@@ -91,6 +91,9 @@ void hsvColorThreshold(cv::Mat& img)
 {
     if (applyHSVColorThreshold)
     {
+        // Convert the image from BGR to HSV
+        cv::cvtColor(img, img, cv::COLOR_BGR2HSV);
+
         cv::namedWindow("HSV Color Threshold", CV_WINDOW_AUTOSIZE);
 
         // TESTING FOR NOW TO SEE IF IT'S REALLY 0 - 180
@@ -110,9 +113,6 @@ void hsvColorThreshold(cv::Mat& img)
         sMax *= (255.0/100);
         vMin *= (255.0/100);
         vMax *= (255.0/100);
-
-        // Convert the image from BGR to HSV
-        cv::cvtColor(img, img, cv::COLOR_BGR2HSV);
 
         // Threshold  the image based off of the minimum and maximum HSV values
         cv::inRange(img, cv::Scalar(hMin, sMin, vMin),
@@ -195,7 +195,8 @@ int main(int argc, char* argv[])
     while (key != 'q')
     {
         // Extract image from the opened camera instance
-        camera >> img;
+        if (argc < 2) camera >> img;
+        else img = cv::imread(argv[1]);
 
         selectFiltersWindow(img);
         gaussianBlur(img);
