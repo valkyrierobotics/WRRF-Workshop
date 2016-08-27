@@ -1,6 +1,6 @@
 # 2016 WRRF Workshop: Integrating OpenCV
 
-*In order to make things easier, we will be installing Debian Jessie x64 through vagrant
+*In order to make things easier, we will be installing Debian Jessie x64 through vagrant*
 
 **If you get an error involving filesystems, run `vagrant plugin install vagrant-vbguest'`. If that fails, ask for assistance.**
 
