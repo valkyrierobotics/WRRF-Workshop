@@ -97,25 +97,16 @@ void hsvColorThreshold(cv::Mat& img)
         cv::namedWindow("HSV Color Threshold", CV_WINDOW_AUTOSIZE);
 
         cv::createTrackbar("Hue Min", "HSV Color Threshold", &hMin, 360);
-        cv::createTrackbar("Sat Min", "HSV Color Threshold", &sMin, 255);
-        cv::createTrackbar("Val Min", "HSV Color Threshold", &sMin, 255);
         cv::createTrackbar("Hue Max", "HSV Color Threshold", &hMax, 360);
-        cv::createTrackbar("Sat Max", "HSV Color Threshold", &sMax, 255);
-        cv::createTrackbar("Val Max", "HSV Color Threshold", &vMax, 255);
+	cv::createTrackbar("Sat Min", "HSV Color Threshold", &sMin, 100);
+	cv::createTrackbar("Sat Max", "HSV Color Threshold", &sMax, 100);
+	cv::createTrackbar("Val Min", "HSV Color Threshold", &vMin, 100);
+	cv::createTrackbar("Val Max", "HSV Color Threshold", &vMax, 100);
 
-        // Convert to OpenCV [0, 180] from standard [0, 360]
-        hMin /= 2;
-        hMax /= 2;
-
-        // Convert to OpenCV [0, 255] from standard [0, 100]
-        sMin *= (255.0/100);
-        sMax *= (255.0/100);
-        vMin *= (255.0/100);
-        vMax *= (255.0/100);
-
-        // Threshold  the image based off of the minimum and maximum HSV values
-        cv::inRange(img, cv::Scalar(hMin, sMin, vMin),
-                         cv::Scalar(hMax, sMax, vMax), img);
+	// Convert to OpenCV ranges of [0, 180] and [0, 100]
+	// Threshold  the image based off of the minimum and maximum HSV values
+	cv::inRange(img, cv::Scalar(hMin / 2, (int)(sMin/100.0 * 255), (int)vMin/100.0 * 255),
+	                 cv::Scalar(hMax / 2, (int)(sMax/100.0 * 255), (int)vMax/100.0 * 255), img);
 
         // Convert the image back to BGR in order to promote modularity
         cv::cvtColor(img, img, cv::COLOR_GRAY2BGR);
