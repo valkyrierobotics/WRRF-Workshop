@@ -1,8 +1,6 @@
-# Setting up your Valkyrie Development Environment
+# 2016 WRRF Workshop: Integrating OpenCV
 
-*Installing Debian Jessie x64 will make your life easier and make deploying to
-the robot easier. It's hard to dual-boot, but it's up to you to decide if it's
-worth it. We will always help with the process.*
+*In order to make things easier, we will be installing Debian Jessie x64 through vagrant
 
 **If you get an error involving filesystems, run `vagrant plugin install vagrant-vbguest'`. If that fails, ask for assistance.**
 
@@ -25,11 +23,12 @@ worth it. We will always help with the process.*
 
 1. Install the following software:
     - [Virtual Box](https://www.virtualbox.org/wiki/Downloads)
+    - [Virtual Box Extension Pack](http://download.virtualbox.org/virtualbox/5.1.4/Oracle_VM_VirtualBox_Extension_Pack-5.1.4-110228.vbox-extpack)
     - [Vagrant](http://www.vagrantup.com/)
     - [PuTTY and PuTTYGen](http://www.chiark.greenend.org.uk/~sgtatham/putty/download.html) *If you already have Cygwin (or git on your PATH), don't install these.*
 
-2. Clone the following git repository: `https://github.com/valkyrierobotics/dev-environment`
-3. Move into the cloned directory, i.e `cd dev-environment`
+2. Clone the following git repository: `https://github.com/valkyrierobotics/WRRF-Workshop`
+3. Move into the cloned directory, i.e `cd WRRF-Workshop`
 4. Run `vagrant up` and wait for the bootstrapping process to complete.
 5. At this point, `vagrant ssh` should allow you to access the VirtualBox. If not, run `vagrant ssh-config` and then
 use PuTTY to connect to that IP and port with the username "vagrant" and password "vagrant."
@@ -44,9 +43,10 @@ use PuTTY to connect to that IP and port with the username "vagrant" and passwor
 
 1. Install the following software:
     - [Virtual Box](https://www.virtualbox.org/wiki/Downloads)
+    - [Virtual Box Extension Pack](http://download.virtualbox.org/virtualbox/5.1.4/Oracle_VM_VirtualBox_Extension_Pack-5.1.4-110228.vbox-extpack)
     - [Vagrant](http://www.vagrantup.com/)
-2. Clone the following git repository: `https://github.com/valkyrierobotics/dev-environment`
-3. Move into the cloned directory, i.e `cd dev-environment`
+2. Clone the following git repository: `https://github.com/valkyrierobotics/WRRF-Workshop`
+3. Move into the cloned directory, i.e `cd WRRF-Workshop`
 4. Run `vagrant up` and wait for the bootstrapping process to complete.
 5. At this point, `vagrant ssh` should allow you to access the VirtualBox.
 
@@ -58,8 +58,9 @@ use PuTTY to connect to that IP and port with the username "vagrant" and passwor
 
 1. Install the following software:
     - [Virtual Box](https://www.virtualbox.org/wiki/Downloads)
+    - [Virtual Box Extension Pack](http://download.virtualbox.org/virtualbox/5.1.4/Oracle_VM_VirtualBox_Extension_Pack-5.1.4-110228.vbox-extpack)
     - [Vagrant](http://www.vagrantup.com/)
-2. Clone the following git repository: `https://github.com/valkyrierobotics/dev-environment`
-3. Move into the cloned directory, i.e `cd dev-environment`
+2. Clone the following git repository: `https://github.com/valkyrierobotics/WRRF-Workshop`
+3. Move into the cloned directory, i.e `cd WRRF-Workshop`
 4. Run `vagrant up` and wait for the bootstrapping process to complete.
 5. At this point, `vagrant ssh` should allow you to access the VirtualBox.

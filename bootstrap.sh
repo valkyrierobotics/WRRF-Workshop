@@ -67,6 +67,12 @@ git clone https://github.com/powerline/fonts; cd fonts
 wget -q https://raw.githubusercontent.com/rupa/z/master/z.sh -O /home/vagrant/z.sh
 sudo chmod +x /home/vagrant/z.sh
 
+# Install OpenCV 3.1 from the zip file
+cd ~
+wget -q https://gist.githubusercontent.com/minhoolee/b05d6c2164935a29fbf67790fac61e40/raw/86683651928b1b84c9383996bbf0dc97009c0529/install-opencv-3.0.0 -O /home/vagrant/install-opencv.sh
+sudo chmod +x /home/vagrant/install-opencv.sh
+/home/vagrant/install-opencv.sh
+
 sudo apt-get install python libpython-dev ruby clang-format-3.5 clang-3.6 gfortran libblas-dev liblapack-dev python-scipy python-matplotlib -yq
 
 sudo chown -R vagrant:vagrant /home/vagrant
