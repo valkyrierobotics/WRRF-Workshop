@@ -4,7 +4,7 @@
 
 **I suggest looking through the [powerpoint](https://docs.google.com/presentation/d/1oMLCyQkB3Cl7wJCs9O_3O-q2pfrVXYHdeoLz4NDUTy8/edit?usp=sharing) while going through the workshop**
 
-**If you get an error involving filesystems, run `vagrant plugin install vagrant-vbguest'`. If that fails, ask for assistance.**
+**If you get an error involving filesystems, run `vagrant plugin install vagrant-vbguest`. If that fails, ask for assistance.**
 
 **If you have AMD, VT-x is probably already on**
 
