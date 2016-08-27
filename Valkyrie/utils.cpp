@@ -1,9 +1,10 @@
 #include "utils.hpp"
 
+#include <iostream>
 std::vector<cv::RotatedRect> getBoundedRects(std::vector< std::vector<cv::Point> >& contours)
 {
     std::vector<cv::RotatedRect> boundedRects (contours.size());
-    for(int i = 0; i < contours.size(); i++)
+    for (size_t i = 0; i < contours.size(); ++i)
     {
         // Get the minimal area bounded rects
         boundedRects[i] = cv::minAreaRect(contours[i]);
@@ -18,6 +19,8 @@ std::vector<std::vector<cv::Point> > getContours(cv::Mat& img)
 
     // Convert img to gray format
     cv::cvtColor(img, img, CV_BGR2GRAY);
+
+    cv::Canny(img, img, 100, 200);
 
     // Extract the contours from the img and store them in the vector of vector of points
     cv::findContours(img, contours, hierarchy, CV_RETR_TREE, CV_CHAIN_APPROX_SIMPLE, cv::Point(0, 0));
@@ -37,16 +40,6 @@ void putData(cv::Mat& img, double distance, double yaw, double pitch)
 	sprintf(str, "Pitch    = %4.2f", pitch);
 	cv::putText(img, str, cv::Point(10, 470), CV_FONT_HERSHEY_COMPLEX_SMALL, 0.75, cv::Scalar(255, 0, 200), 1, 8, false);
 }
-
-// void drawContours(cv::Mat& img, std::vector< std::vector<cv::Point> >& contours, cv::Scalar& color)
-// {
-// 	std:vector<cv::Vec4i> hierarchy;
-// 	
-// 	// Draw the contours
-//     for (size_t i = 0; i < contours.size(); ++i)
-//         // cv::drawContours(img, contours, i, color, 2, 8, hierarchy, 0, cv::Point());
-//         cv::drawContours(img, contours, i, color);
-// }
 
 void drawBoundedRects(cv::Mat& img, std::vector<cv::RotatedRect>& boundedRects, cv::Scalar& color)
 {

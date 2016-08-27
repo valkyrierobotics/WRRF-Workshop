@@ -37,7 +37,7 @@ int rectInd = 0;
 const int SELECT_OPTIONS = 1;
 int applyGaussianBlur = 0;
 int applyHSVColorThreshold = 0;
-int applyBoundedRectsExtraction = 0;
+int applyBoundedRectsExtraction = 1;
 
 // Shows a window with trackbars to control the filters on the image
 void selectFiltersWindow(cv::Mat& img)
@@ -96,7 +96,6 @@ void hsvColorThreshold(cv::Mat& img)
 
         cv::namedWindow("HSV Color Threshold", CV_WINDOW_AUTOSIZE);
 
-        // TESTING FOR NOW TO SEE IF IT'S REALLY 0 - 180
         cv::createTrackbar("Hue Min", "HSV Color Threshold", &hMin, 360);
         cv::createTrackbar("Sat Min", "HSV Color Threshold", &sMin, 255);
         cv::createTrackbar("Val Min", "HSV Color Threshold", &sMin, 255);
@@ -118,6 +117,9 @@ void hsvColorThreshold(cv::Mat& img)
         cv::inRange(img, cv::Scalar(hMin, sMin, vMin),
                          cv::Scalar(hMax, sMax, vMax), img);
 
+        // Convert the image back to BGR in order to promote modularity
+        cv::cvtColor(img, img, cv::COLOR_GRAY2BGR);
+
         cv::imshow("HSV Color Threshold Output", img);
     }
     else
@@ -134,7 +136,7 @@ void boundedRectExtraction(cv::Mat& img,
 {
     if (applyBoundedRectsExtraction)
     {
-        cv::namedWindow("Bounded Rects", CV_WINDOW_AUTOSIZE);
+        cv::namedWindow("Bounded Rects", cv::WINDOW_AUTOSIZE);
 
         contours = getContours(img);
         boundedRects = getBoundedRects(contours);
@@ -143,11 +145,12 @@ void boundedRectExtraction(cv::Mat& img,
         const int drawAllContours = -1;
         cv::drawContours(img, contours, drawAllContours, GREEN);
         drawBoundedRects(img, boundedRects, PURPLE);
-
         cv::imshow("Bounded Rects Output", img);
 
-        cv::createTrackbar("Index of Rectangle", "Bounded Rects", 
-                &rectInd, boundedRects.size());
+        int size = boundedRects.size();
+        if (size < 1)
+            size = 1;
+        cv::createTrackbar("Index of Rectangle", "Bounded Rects", &rectInd, size);
     }
     else
     {
@@ -160,7 +163,7 @@ void boundedRectExtraction(cv::Mat& img,
 int main(int argc, char* argv[])
 {
     // Matrix to represent image
-    cv::Mat img;
+    cv::Mat img, unfiltered;
 
     // Start the camera at the pre defined device id
     cv::VideoCapture camera(PORT);
@@ -197,6 +200,7 @@ int main(int argc, char* argv[])
         // Extract image from the opened camera instance
         if (argc < 2) camera >> img;
         else img = cv::imread(argv[1]);
+        unfiltered = img.clone();
 
         selectFiltersWindow(img);
         gaussianBlur(img);
@@ -205,14 +209,14 @@ int main(int argc, char* argv[])
 
         if (boundedRects.size() > 0 && contours.size() > 0)
         {
-            cv::drawContours(img, contours, rectInd, GREEN);
+            cv::drawContours(unfiltered, contours, rectInd, GREEN);
             // Separate the targeted rectangle from the other rectangles
-            std::vector<cv::RotatedRect> targetedRect;
+            std::vector<cv::RotatedRect> targetedRect (1);
             targetedRect[0] = boundedRects[rectInd];
-            drawBoundedRects(img, targetedRect, PURPLE);
+            drawBoundedRects(unfiltered, targetedRect, PURPLE);
         }
 
-        cv::imshow("Final Image", img);
+        cv::imshow("Final Image", unfiltered);
 
         // Waits at least a specified number of milliseconds for 
         // a key event from the window
