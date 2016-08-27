@@ -37,7 +37,7 @@ int rectInd = 0;
 const int SELECT_OPTIONS = 1;
 int applyGaussianBlur = 0;
 int applyHSVColorThreshold = 0;
-int applyBoundedRectsExtraction = 0;
+int applyBoundedRectsExtraction = 1;
 
 // Shows a window with trackbars to control the filters on the image
 void selectFiltersWindow(cv::Mat& img)
@@ -139,6 +139,7 @@ void boundedRectExtraction(cv::Mat& img,
         const int drawAllContours = -1;
         cv::drawContours(img, contours, drawAllContours, GREEN);
         drawBoundedRects(img, boundedRects, PURPLE);
+
         cv::imshow("Bounded Rects", img);
 
         int size = boundedRects.size();
