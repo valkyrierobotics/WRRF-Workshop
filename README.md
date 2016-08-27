@@ -32,9 +32,10 @@
 2. Clone the following git repository: `https://github.com/valkyrierobotics/WRRF-Workshop`
 3. Move into the cloned directory, i.e `cd WRRF-Workshop`
 4. Run `vagrant up` and wait for the bootstrapping process to complete.
-5. At this point, `vagrant ssh` should allow you to access the VirtualBox. If not, run `vagrant ssh-config` and then
+5. Run `vagrant plugin install vagrant-vbguest` to resolve any file system issues
+6. At this point, `vagrant ssh` should allow you to access the VirtualBox. If not, run `vagrant ssh-config` and then
 use PuTTY to connect to that IP and port with the username "vagrant" and password "vagrant."
-6. You can now use PuTTYGen to convert the OpenSSH key used by vagrant into a PPK and save it and then access the VirtualBox instance through pubkey.
+7. You can now use PuTTYGen to convert the OpenSSH key used by vagrant into a PPK and save it and then access the VirtualBox instance through pubkey.
 
 ## Debian/Ubuntu
 
@@ -50,7 +51,8 @@ use PuTTY to connect to that IP and port with the username "vagrant" and passwor
 2. Clone the following git repository: `https://github.com/valkyrierobotics/WRRF-Workshop`
 3. Move into the cloned directory, i.e `cd WRRF-Workshop`
 4. Run `vagrant up` and wait for the bootstrapping process to complete.
-5. At this point, `vagrant ssh` should allow you to access the VirtualBox.
+5. Run `vagrant plugin install vagrant-vbguest` to resolve any file system issues
+6. At this point, `vagrant ssh` should allow you to access the VirtualBox.
 
 ## Mac OS X
 
@@ -65,4 +67,5 @@ use PuTTY to connect to that IP and port with the username "vagrant" and passwor
 2. Clone the following git repository: `https://github.com/valkyrierobotics/WRRF-Workshop`
 3. Move into the cloned directory, i.e `cd WRRF-Workshop`
 4. Run `vagrant up` and wait for the bootstrapping process to complete.
-5. At this point, `vagrant ssh` should allow you to access the VirtualBox.
+5. Run `vagrant plugin install vagrant-vbguest` to resolve any file system issues
+6. At this point, `vagrant ssh` should allow you to access the VirtualBox.
